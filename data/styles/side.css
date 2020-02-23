@@ -1,0 +1,27 @@
+.sidebar {
+	height: 100%;
+	width: 180px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	padding-top: 30px;
+	background-color: black;
+}
+
+.sidebar a {
+	color: grey;
+	font-size: 25px;
+	display: block;
+	text-decoration: none;
+	padding: 6px 8px 6px 16px;
+}
+
+.sidebar a:hover {
+	color: lightgrey;
+}
+
+main {
+	margin-left: 180px;
+}

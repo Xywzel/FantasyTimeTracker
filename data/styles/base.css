@@ -1,0 +1,22 @@
+body {
+	background-color: #202020;
+	color: lightgrey;
+}
+
+img {
+  max-width: 95%;
+}
+
+
+table {
+	border-collapse: collapse;
+}
+
+table, th {
+	border-top: 2px solid #101010;
+	border-bottom: 2px solid #101010;
+}
+
+tr:nth-of-type(even) {
+	background-color:#1f2f1f
+}

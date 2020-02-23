@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<title>Time Tracker</title>
+  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='styles/base.css')}}>
+{% endblock %}
+
+{% block body %}
+	<h1>Time Tracker</h1>
+
+	<h2>Weather</h2>
+
+	<form action="/time_tracker/wind_dir" target="_self" method="post">
+		Wind blows from
+		<select name="wind_dir">
+			{% for option in track.get_directions() %}
+			<option value={{option}} {% if (option == track.wind_dir) %} selected {% endif %}>{{option|upper}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Set">
+	</form>
+
+	<form action="/time_tracker/wind_speed" target="_self" method="post">
+		with a speed of
+		<input type="number" name="wind_speed" size=3 value={{ track.wind_speed }}> m/s
+		<input type="submit" value="Set">
+	</form>
+
+	<form action="/time_tracker/clouds" target="_self" method="post">
+		Cloud cover:
+		<select name="clouds">
+			{% for option in track.get_clouds() %}
+			<option value={{option}} {% if (option == track.clouds) %} selected {% endif %}>{{option|capitalize}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Set">
+	</form>
+
+	<form action="/time_tracker/rain" target="_self" method="post">
+		Rain:
+		<input type="number" name="rain" size=3 value={{ track.rain }}> mm/h
+		<input type="submit" value="Set">
+	</form>
+
+	<form action="/time_tracker/special" target="_self" method="post">
+		Other conditions:
+		<select name="special">
+			{% for option in track.get_specials() %}
+			<option value={{option}} {% if (option == track.special) %} selected {% endif %}>{{option|capitalize}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Set">
+	</form>
+
+	<h2>Surroundings</h2>
+	<form action="/time_tracker/background" target="_self" method="post">
+		<select name="background">
+			{% for background in track.get_backgrounds() %}
+			<option value={{background}} {% if (background == track.background) %} selected {% endif %}>{{background|capitalize}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Set">
+	</form>
+
+	<h2>Time</h2>
+	<form action="/time_tracker/time" target="_self" method="post">
+		Date:
+		<input type="number" name="year" size="5" value={{track.time.year}}>
+		-
+		<select name="month">
+			{% for month in track.get_months() %}
+			<option value={{month}} {% if (month == track.time.month) %} selected {% endif %}>{{month|capitalize}}</option>
+			{% endfor %}
+		</select>
+		-
+		<select name="day">
+			{% for day in range(0, 31) %}
+			<option value={{day}} {% if (day == track.time.day) %} selected {% endif %}>{{day}}</option>
+			{% endfor %}
+		</select>
+		Time:
+		<select name="hour">
+			{% for hour in range(0, 60) %}
+			<option value={{hour}} {% if (hour == track.time.hour) %} selected {% endif %}>{{hour}}</option>
+			{% endfor %}
+		</select>
+		:
+		<select name="minute">
+			{% for minute in range(0, 60) %}
+			<option value={{minute}} {% if (minute == track.time.minute) %} selected {% endif %}>{{minute}}</option>
+			{% endfor %}
+		</select>
+		:
+		<select name="second">
+			{% for second in range(0, 60) %}
+			<option value={{second}} {% if (second == track.time.second) %} selected {% endif %}>{{second}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Set">
+	</form>
+
+	<form action="/time_tracker/advance" target="_self" method="post">
+		<select name="time">
+			{% for unit in track.get_time_units() %}
+			<option value={{unit}} {% if (loop.index == 0) %} selected {% endif %}> {{unit|capitalize}} </option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Advance" name="day">
+	</form>
+	
+{% endblock %}
+

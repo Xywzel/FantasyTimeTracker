@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}
+		{% endblock %}
+		<link rel="stylesheet" type="text/css" href={{url_for('static', filename='styles/side.css')}}>
+	</head>
+
+	<body>
+		{#<header><a href="/index">Index</a></header>#}
+		
+		<div class="sidebar">
+			<a href="/">Index</a>
+			<a href="/markdown/markdown/DMScreen.md">DM Screen</a>
+			<a href="/markdown/markdown/Soundboard.md">Soundboard</a>
+			<a href="/markdown/markdown/World/Languages.md">Languages</a>
+			<a href="/creatures">Creatures</a>
+			<a href="/generators">Generators</a>
+			<a href="/events">Events</a>
+			<a href="/players">Players</a>
+			<a href="/time_viewer">Time Viewer</a>
+			<a href="/time_tracker">Time Tracker</a>
+			<a href="/people">People</a>
+		</div>
+
+		<main> {% block body %}{% endblock %} </main>
+		
+		{#<footer>Footer: <a href="/index">Home</a></footer>#}
+	</body>
+</html>
