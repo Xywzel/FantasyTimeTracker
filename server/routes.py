@@ -3,6 +3,10 @@ from flask import render_template, redirect, request, url_for
 from server import app
 from server.time_tracker import get_time_tracker, get_time_viewer, set_time_tracker, advance_time_tracker
 
+@app.route('/')
+def index():
+    return get_time_viewer()
+
 @app.route('/time_viewer')
 def time_viewer():
     return get_time_viewer()
