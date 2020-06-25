@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<title>Calendar - Fantasy Time Tracker</title>
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='styles/base.css')}}>
+{% endblock %}
+
+{% block body %}
+
+<h1> Calendar <h1>
+
+<div>
+	<h2> Date : X.Y.ZZZZ </h2>
+	<ul>
+		<li>Clock XX::YY: Event started</li>
+	</ul>
+</div>
+
+{% endblock %}

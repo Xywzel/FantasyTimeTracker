@@ -7,9 +7,72 @@
 
 {% block body %}
 	<h1>Time Tracker</h1>
+	<h2>Advance</h2>
+	<p>
+		Add an envent to timeline, which advances time tracker forward.
+		Event will only show up on calendar if description is non-empty.
+		You can use empty events, to just move the clock forward in the viewer.
+	</p>
+	<form action="/time_tracker/advance" target="_self" method="post">
+		<p>
+			Description: <input type="text" name="description" size="100" value="">
+		</p>
 
-	<h2>Weather</h2>
+		<p>
+		Length:
+		<select name="time">
+			{% for unit in track.get_time_units() %}
+			<option value={{unit}} {% if (loop.index == 0) %} selected {% endif %}> {{unit|capitalize}} </option>
+			{% endfor %}
+		</select>
+		</p>
+		<input type="submit" value="Advance" name="day">
+	</form>
 
+
+	<h2>Set Current Time and Conditions</h2>
+
+	<h3>Time</h3>
+	<form action="/time_tracker/time" target="_self" method="post">
+		Date:
+		<input type="number" name="year" size="5" value={{track.time.year}}>
+		-
+		<select name="month">
+			{% for month in track.get_months() %}
+			<option value={{month}} {% if (month == track.time.month) %} selected {% endif %}>{{month|capitalize}}</option>
+			{% endfor %}
+		</select>
+		-
+		<select name="day">
+			{% for day in range(0, 31) %}
+			<option value={{day}} {% if (day == track.time.day) %} selected {% endif %}>{{day}}</option>
+			{% endfor %}
+		</select>
+		</br>
+		Time:
+		<select name="hour">
+			{% for hour in range(0, 60) %}
+			<option value={{hour}} {% if (hour == track.time.hour) %} selected {% endif %}>{{hour}}</option>
+			{% endfor %}
+		</select>
+		:
+		<select name="minute">
+			{% for minute in range(0, 60) %}
+			<option value={{minute}} {% if (minute == track.time.minute) %} selected {% endif %}>{{minute}}</option>
+			{% endfor %}
+		</select>
+		:
+		<select name="second">
+			{% for second in range(0, 60) %}
+			<option value={{second}} {% if (second == track.time.second) %} selected {% endif %}>{{second}}</option>
+			{% endfor %}
+		</select>
+		</br>
+		<input type="submit" value="Set">
+	</form>
+
+
+	<h3>Weather</h3>
 	<form action="/time_tracker/wind_dir" target="_self" method="post">
 		Wind blows from
 		<select name="wind_dir">
@@ -52,7 +115,7 @@
 		<input type="submit" value="Set">
 	</form>
 
-	<h2>Surroundings</h2>
+	<h3>Surroundings</h3>
 	<form action="/time_tracker/background" target="_self" method="post">
 		<select name="background">
 			{% for background in track.get_backgrounds() %}
@@ -62,51 +125,6 @@
 		<input type="submit" value="Set">
 	</form>
 
-	<h2>Time</h2>
-	<form action="/time_tracker/time" target="_self" method="post">
-		Date:
-		<input type="number" name="year" size="5" value={{track.time.year}}>
-		-
-		<select name="month">
-			{% for month in track.get_months() %}
-			<option value={{month}} {% if (month == track.time.month) %} selected {% endif %}>{{month|capitalize}}</option>
-			{% endfor %}
-		</select>
-		-
-		<select name="day">
-			{% for day in range(0, 31) %}
-			<option value={{day}} {% if (day == track.time.day) %} selected {% endif %}>{{day}}</option>
-			{% endfor %}
-		</select>
-		Time:
-		<select name="hour">
-			{% for hour in range(0, 60) %}
-			<option value={{hour}} {% if (hour == track.time.hour) %} selected {% endif %}>{{hour}}</option>
-			{% endfor %}
-		</select>
-		:
-		<select name="minute">
-			{% for minute in range(0, 60) %}
-			<option value={{minute}} {% if (minute == track.time.minute) %} selected {% endif %}>{{minute}}</option>
-			{% endfor %}
-		</select>
-		:
-		<select name="second">
-			{% for second in range(0, 60) %}
-			<option value={{second}} {% if (second == track.time.second) %} selected {% endif %}>{{second}}</option>
-			{% endfor %}
-		</select>
-		<input type="submit" value="Set">
-	</form>
 
-	<form action="/time_tracker/advance" target="_self" method="post">
-		<select name="time">
-			{% for unit in track.get_time_units() %}
-			<option value={{unit}} {% if (loop.index == 0) %} selected {% endif %}> {{unit|capitalize}} </option>
-			{% endfor %}
-		</select>
-		<input type="submit" value="Advance" name="day">
-	</form>
-	
 {% endblock %}
 

@@ -1,11 +1,15 @@
 from flask import render_template, redirect, request, url_for
 
 from server import app
-from server.time_tracker import get_time_tracker, get_time_viewer, set_time_tracker, advance_time_tracker
+from server.time_tracker import get_index, get_time_tracker, get_time_viewer, get_calendar, set_time_tracker, advance_time_tracker
 
 @app.route('/')
 def index():
-    return get_time_viewer()
+    return get_index()
+
+@app.route('/calendar')
+def calendar():
+    return get_calendar()
 
 @app.route('/time_viewer')
 def time_viewer():
