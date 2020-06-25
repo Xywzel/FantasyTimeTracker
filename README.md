@@ -6,7 +6,8 @@ Time Tracking tool for tabletop roleplaying games
 * Create Python 3 virtual environment for the program.
   ```python3 -m venv path/to/venv```
 * Activate the virtual enviroment
-  ```. ./path/to/venv/Scripts/activate```
+  ```. ./path/to/venv/Scripts/activate``` on Windows or
+  ```. ./path/to/venv/bin/activate``` on Unix
 * Install the dependency libraries with pip
 
 ```
