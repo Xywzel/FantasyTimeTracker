@@ -29,7 +29,7 @@ in the folder they are run from.
 ## Running the server
 * Set either production or development environment in the config.py
 * Set environment variables FLASK_ENV and FLASK_DEBUG to match production or
-  development option in config.py
+  development option as in config.py. FLASK_APP should be set to "run.py".
 * Set secret keys in config.py to random strings only you know
 * Activate the virtual environment
 ```. ./path/to/venv/bin/activate``` on unix and
@@ -37,3 +37,6 @@ in the folder they are run from.
 * Run python flask
 ```python -m flask run```
 * Open browser of your choice on address displayed
+
+Setting the virtual enviroment and starting the server can be also done with
+start.sh or start.ps1 scripts.
