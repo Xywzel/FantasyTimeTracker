@@ -31,7 +31,8 @@ in the folder they are run from.
   development option in config.py
 * Set secret keys in config.py to random strings only you know
 * Activate the virtual environment
-```. ./path/to/venv/Scrips/activate```
+```. ./path/to/venv/bin/activate``` on unix and
+```. ./path/to/venv/Scrips/activate``` on windows
 * Run python flask
 ```python -m flask run```
 * Open browser of your choice on address displayed
