@@ -22,7 +22,8 @@ pip install mdx_truly_sane_lists
   ```deactivate```
 
 Other than Python 3, pip and venv setup, this step can be completed on windows
-with setup.ps1 or on unix with setup.sh.
+with setup.ps1 or on unix with setup.sh. The scripts create a folder for venv
+in the folder they are run from.
 
 ## Running the server
 * Set either production or development environment in the config.py
