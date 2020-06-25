@@ -15,7 +15,7 @@ varying lowp vec4 position;
 
 void main()
 {
-//	gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+	//	gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
 	gl_Position = aVertexPosition;
 	position = aVertexPosition;
 }
@@ -28,10 +28,52 @@ precision highp float;
 uniform float time;
 varying lowp vec4 position;
 
+vec4 alphaMix(vec4 base, vec4 added)
+{
+	vec3 color = base.rgb * (1.0 - added.a);
+	color += added.rgb * added.a;
+	return vec4(color, 1.0);
+}
+
+vec4 clouds(vec2 uv)
+{
+	float amount = 0.0;
+	if(uv.y > 0.0)
+		amount = 0.25;
+	if(uv.y > 0.5)
+		amount = 0.5;
+	if(uv.y > 1.0)
+		amount = 0.75;
+	return vec4(amount);
+}
+
+
+vec4 background(vec2 uv)
+{
+	// Generate sky and horizon based on surroundings
+	return clouds(uv);
+}
+
+vec4 foreground(vec2 uv)
+{
+	// Generate foreground objects based on surroundings
+	float a = uv.y < sin(uv.x*5.0)*0.25 ? 1.0 : 0.0;
+	return vec4(0,1,0,a);
+}
+
+vec4 effects(vec2 uv, vec4 color)
+{
+	// Apply special effects, such as weather or lighting
+	return color;
+}
+
 void main()
 {
-	float a = sin(time);
-	gl_FragColor = vec4(position.xy, a, 1.0);
+	vec2 uv = position.xy;
+	vec4 color = background(uv);
+	color = alphaMix(color, foreground(uv));
+	color = effects(uv, color);
+	gl_FragColor = color;
 }
 `;
 
