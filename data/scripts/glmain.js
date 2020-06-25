@@ -15,7 +15,8 @@ varying lowp vec4 position;
 
 void main()
 {
-	gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+//	gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+	gl_Position = aVertexPosition;
 	position = aVertexPosition;
 }
 `;
@@ -83,15 +84,16 @@ function initBuffers(gl) {
 	};
 }
 
-function drawScene(gl, programInfo, buffers, time) {
-	gl.clearColor(0.0, 0.0, 0.0, 1.0);
+function drawScene(gl, programInfo, buffers, time, dimensions) {
+	gl.viewport(0,0,dimensions[0], dimensions[1]);
+	gl.clearColor(0.5, 0.5, 0.5, 1.0);
 	gl.clearDepth(1.0);
 	gl.enable(gl.DEPTH_TEST);
 	gl.depthFunc(gl.LEQUAL);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 	const fieldOfView = 45 * Math.PI / 180;
-	const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+	const aspect = dimensions[0] / dimensions[1];
 	const zNear = 0.1;
 	const zFar = 100.0;
 	const projectionMatrix = mat4.create();
@@ -119,12 +121,21 @@ function drawScene(gl, programInfo, buffers, time) {
 }
 
 function main() {
+	// Get the canvas to draw on
 	const canvas = document.querySelector("#time_background");
+	// Make canvas full page sized
+	var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+	canvas.width = dimension[0]-document.querySelector(".sidebar").style.width;
+	canvas.height = dimension[1];
+
+	// Set it for web GL
 	const gl = canvas.getContext("webgl");
 	if (gl === null) {
 		alert("Unable to initialize WebGL. Your browser or machine may not support it.");
 		return;
 	}
+
+	// Init shaders
 	const shaderProgram = initShaderProgram(gl, vertexSource, fragmentSource);
 	const programInfo = {
 		program: shaderProgram,
@@ -139,16 +150,24 @@ function main() {
 	};
 	const buffers = initBuffers(gl);
 
+	// Create render function that calls itself with delay
 	var lastTime = 0;
 	function render(currentTime) {
+		// Update time
 		const nowTime = 0.001 * currentTime;
 		const delta = nowTime - lastTime;
 		lastTime = nowTime;
-
-		drawScene(gl, programInfo, buffers, nowTime);
+		// Update canvas to screen dimensions
+		var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+		canvas.width = dimension[0]-document.querySelector(".sidebar").style.width;
+		canvas.height = dimension[1];
+		// Draw calls
+		drawScene(gl, programInfo, buffers, nowTime, dimension);
+		// Scedule the next draw
 		requestAnimationFrame(render);
 	}
 
+	// Start rendering
 	requestAnimationFrame(render);
 }
 
