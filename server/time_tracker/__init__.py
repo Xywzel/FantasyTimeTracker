@@ -60,7 +60,7 @@ class TimeTracker:
         elif (variable == "background"):
             self.background = value
         elif (variable == "time"):
-            self.time = Moment(value)
+            self.time = Moment(*value)
 
     def get_clouds(self):
         return ["none", "light", "half", "heavy"]
