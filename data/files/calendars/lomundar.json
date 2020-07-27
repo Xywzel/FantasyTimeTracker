@@ -1,0 +1,35 @@
+
+{
+	"lengths" : {
+		"turn" : 6,
+		"minute" : 60,
+		"hour" : 3600,
+		"day" : 86400
+	},
+	"months" : {
+		"Petial": 31,
+		"Rilava": 30,
+		"Dahine": 31,
+		"Necil": 30,
+		"Delel": 31,
+		"Zalaph": 30,
+		"Gielel": 31,
+		"Hyrico": 30,
+		"Toros": 31,
+		"Senaed": 32
+	},
+	"weekdays" : ["Niram", "Doriav", "Amula", "Libetu", "Eheina", "Syrik"],
+
+	"moons" : [{
+		"name" : "kosomo",
+		"period": 13,
+		"startPhace": "full",
+		"phaces": ["full", "new"]
+	},{
+		"name": "yalamo",
+		"period": 31,
+		"startPhace": "full",
+		"phaces": ["full", "new"]
+	}]
+
+}

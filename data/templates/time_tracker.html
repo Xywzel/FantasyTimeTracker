@@ -7,6 +7,12 @@
 
 {% block body %}
 	<h1>Time Tracker</h1>
+	<h2>Current Status</h2>
+	<p>
+	Currently it is {{track.time.day}} of {{track.time.month}}, year {{track.time.year}}.
+	Clock is {{track.time.hour}}:{{track.time.minute}}:{{track.time.second}}.
+	</p>
+
 	<h2>Advance</h2>
 	<p>
 		Add an envent to timeline, which advances time tracker forward.
@@ -29,6 +35,10 @@
 		<input type="submit" value="Advance" name="day">
 	</form>
 
+	<h2>Effect</h2>
+	<p>
+		Add an effect that lasts for a set amount of time.
+	</p>
 
 	<h2>Set Current Time and Conditions</h2>
 
