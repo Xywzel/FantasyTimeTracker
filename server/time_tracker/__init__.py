@@ -89,6 +89,7 @@ class TimeTracker:
         data = json.dumps(self.__dict__)
         with open(filename, 'w', encoding="utf8") as f:
             f.write(data)
+        self.filename = filename
 
     def load(self):
         data = {}
