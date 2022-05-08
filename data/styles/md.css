@@ -4,7 +4,7 @@ body {
 }
 
 img {
-  max-width: 95%;
+	max-width: 95%;
 }
 
 
@@ -21,22 +21,25 @@ tr:nth-of-type(even) {
 	background-color:#1f2f1f
 }
 
-/* unvisited link */
+textarea {
+	color:#f0f0f0;
+	background-color:#303030;
+	height:500px;
+	width:90%;
+}
+
 a:link {
 	color: #668cff;
 }
 
-/* visited link */
 a:visited {
 	color: #8c66ff;
 }
 
-/* mouse over link */
 a:hover {
 	color: #809fff;
 }
 
-/* selected link */
 a:active {
 	color: #809fff;
 }

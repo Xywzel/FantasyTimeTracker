@@ -24,4 +24,19 @@ Tracker is used for setting the current time and scene and to add events that mo
 Calendar is for getting list of past events.
 </p>
 
+{% macro tree(n, node) %}
+	{% if node.type == "dir" %}
+		<h{{n}}>{{node.friendly_name|capitalize}}</h{{n}}>
+		<ul>
+		{% for child in node.child %}
+			{{ tree(n+1, child) }}
+		{% endfor %}
+		</ul>
+	{% else %}
+	<li><a href="{{node.link}}">{{node.friendly_name}}</a></li>
+	{% endif %}
+{% endmacro %}
+
+{{tree(1, root)}}
+
 {% endblock %}

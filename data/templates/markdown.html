@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<title>{{title}}</title>
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='styles/md.css')}}>
+{% endblock %}
+
+{% block body %}
+
+<div> <a href="/mdedit/{{path}}"> Edit </a> </div>
+
+{{content|safe}}
+
+{% endblock %}

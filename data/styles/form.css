@@ -1,0 +1,37 @@
+
+p {
+	width:100%
+}
+
+label {
+}
+
+input, select {
+	border: 2px solid darkred;
+	border-radius: 4px;
+	background-color: #e5e5e5;
+	color: black;
+	resize: vertical;
+}
+
+table {
+	width: 90%;
+}
+
+th, tr, td {
+	text-align: center;
+}
+
+td input {
+	text-align: center;
+	width: 50%;
+}
+
+select[multiple] option {
+	float: left;
+}
+
+select[multiple] option:checked {
+	background-color: yellow;
+}
+

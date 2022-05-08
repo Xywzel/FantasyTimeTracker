@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<title>{{title}}</title>
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='styles/md.css')}}>
+	{{ pagedown.include_pagedown() }}
+{% endblock %}
+
+{% block body %}
+
+<form method="POST">
+{{ form.pagedown(placeholder=data) }}
+{{ form.csrf_token }}
+{{ form.submit }}
+</form>
+
+<a href="/markdown/{{filename}}"> Cancel </a>
+{% endblock %}
