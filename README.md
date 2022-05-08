@@ -1,7 +1,13 @@
 # FantasyTimeTracker
-Time Tracking tool for tabletop roleplaying games. Time counting is set up for
-fifth edition Dungeons and Dragons, but chancing turn length should be enough
-to fit for most other games.
+
+Fantasy Time Tracker is a game masters tool for keeping linked notes and
+tracking passage of time for tabletop role playing games.
+
+Note side keeps markdown files that can be rendered on browser with links
+between them and also features a way to edit them from browser.
+
+Time counting is set up for fifth edition Dungeons and Dragons, but chancing
+turn length should be enough to fit for most other games.
 
 The tracker and the calendar views are provided for game master to set current
 time dependent conditions and track how events move the clock forward.
@@ -10,7 +16,20 @@ This tool also provides a web page that can be shown to players on secondary
 monitor or projector to give a bit of atmosphere and keep them on track of the
 time passing in game.
 
+Because the server is meant to be run on game masters laptop, there is currently
+no user authentication.
+
 ## Setup
+
+The program depends on *Python 3*, and the default setup process requires *pip*
+and *venv* installed for the Python version.
+
+On windows the setup can be completed by running *setup.ps1* and on unix
+*setup.sh* will handle the setup. The scripts create a folder for venv in the
+folder they are run from.
+
+Manually the setup can be done as follows:
+
 * Make sure Python 3, pip and venv are installed
 * Create Python 3 virtual environment for the program.
   ```
@@ -26,26 +45,24 @@ time passing in game.
   ```
   on Unix
 * Install the dependency libraries with pip
-
-```
-pip install flask
-pip install flask_wtf
-pip install flask_pagedown
-pip install markdown
-pip install wtforms
-pip install mdx_truly_sane_lists
-```
-
+  ```
+  pip install flask
+  pip install flask_wtf
+  pip install flask_pagedown
+  pip install markdown
+  pip install wtforms
+  pip install mdx_truly_sane_lists
+  ```
 * Deactivate the venv
   ```
   deactivate
   ```
 
-Other than Python 3, pip and venv setup, this step can be completed on windows
-with setup.ps1 or on unix with setup.sh. The scripts create a folder for venv
-in the folder they are run from.
-
 ## Running the server
+
+Setting the virtual environment and starting the server can be also done with
+start.sh or start.ps1 scripts, on unix and windows, respectively. Manually the
+start up works by following these steps.
 
 * Set either production or development environment in the config.py
 * Set environment variables FLASK_ENV and FLASK_DEBUG to match production or
@@ -65,9 +82,6 @@ in the folder they are run from.
   python -m flask run
   ```
 * Open browser of your choice on address displayed
-
-Setting the virtual environment and starting the server can be also done with
-start.sh or start.ps1 scripts.
 
 ## Other dependencies
 
