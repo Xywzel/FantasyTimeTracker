@@ -1,0 +1,33 @@
+
+{
+	"lengths" : {
+		"turn" : 6,
+		"minute" : 60,
+		"hour" : 3600,
+		"day" : 86400
+	},
+	"months" : {
+		"January": 31,
+		"February": 29,
+		"Mars": 31,
+		"April": 30,
+		"May": 31,
+		"June": 30,
+		"July": 31,
+		"August": 31,
+		"September": 30,
+		"October": 31,
+		"November": 30,
+		"December": 31
+	},
+	"weekdays" : ["Monday", "Tuesday", "Wensday",
+		"Thursday", "Friday", "Saturnday", "Sunday"],
+
+	"moons" : [{
+		"name" : "Moon",
+		"period": 30,
+		"startPhace": "full",
+		"phaces": ["full", "new"]
+	}]
+
+}
