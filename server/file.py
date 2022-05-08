@@ -14,8 +14,6 @@ class File:
             self.type = self.friendly_name.split(".")[1]
         if self.type == "md":
             self.link = "http://127.0.0.1:5000/markdown/" + self.relpath
-        elif "creatures/" in self.relpath and self.type == "json":
-            self.link = "http://127.0.0.1:5000/" + self.relpath.replace("creatures", "creature")
         else:
             self.link = "http://127.0.0.1:5000/file/" + self.relpath
         self.child.sort(key= lambda x: (x.type, x.friendly_name))

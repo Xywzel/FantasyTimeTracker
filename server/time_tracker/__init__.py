@@ -10,9 +10,6 @@ def get_tracker_path():
     path = os.path.join(os.getcwd(), "data", "files", "time_tracker.json")
     return path
 
-def get_index():
-    return render_template('index.html')
-
 def get_calendar():
     tracker = TimeTracker(get_tracker_path())
     return render_template('calendar.html', track=tracker)

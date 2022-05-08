@@ -1,7 +1,5 @@
 
 def main ():
-    year = int(input("Give year: "))
-
     months = ["1. Petial","2. Rilava","3. Dahine","4. Necil","5. Delel","6. Zalaph","7. Gielel","8. Hyrico","9. Toros","10. Senaeb"]
     month_lens = [31, 30, 31, 30, 31, 30, 31, 30, 31, 32]
     weekdays = ["Amula","Libetu","Eheina","Syrik","Niram","Doriav"]

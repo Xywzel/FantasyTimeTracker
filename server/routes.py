@@ -1,7 +1,10 @@
 from flask import render_template, redirect, request, url_for
 
 from server import app
-from server.time_tracker import get_index, get_time_tracker, get_time_viewer, get_calendar, set_time_tracker, advance_time_tracker
+
+from server.index import get_index, get_markdown
+from server.index.markdown_form import MarkdownForm
+from server.time_tracker import get_time_tracker, get_time_viewer, get_calendar, set_time_tracker, advance_time_tracker
 
 @app.route('/')
 def index():
@@ -41,3 +44,15 @@ def time_tracker_advance():
     unit = request.form.get('unit')
     advance_time_tracker(unit)
     return redirect(url_for('time_tracker'))
+
+@app.route('/markdown/<path:filename>')
+def load_markdown(filename):
+    return get_markdown(filename)
+
+@app.route('/mdedit/<path:filename>', methods=['GET','POST'])
+def edit_markdown(filename):
+    form = MarkdownForm()
+    if form.validate_on_submit():
+        return form.save(filename)
+    else:
+        return form.render(filename)
